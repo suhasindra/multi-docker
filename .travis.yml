@@ -3,23 +3,23 @@ language: generic
 services:
  - docker
 before_install:
- - docker build -t suhasappa/react-test -f ./client/Dockerfile.dev ./client
+ - docker build -t suhasindra/react-test -f ./client/Dockerfile.dev ./client
 
 script:
- - docker run -e CI=true suhasappa/react-test npm run test
+ - docker run -e CI=true suhasindra/react-test npm run test
 
 after_success:
- - docker build -t suhasappa/multi-client ./client
- - docker build -t suhasappa/multi-nginx ./nginx
- - docker build -t suhasappa/multi-server ./server
- - docker build -t suhasappa/multi-worker ./worker
+ - docker build -t suhasindra/multi-client ./client
+ - docker build -t suhasindra/multi-nginx ./nginx
+ - docker build -t suhasindra/multi-server ./server
+ - docker build -t suhasindra/multi-worker ./worker
  #Login to docker CLI
  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 # Take the images and push to docker hub
- - docker push suhasappa/multi-client
- - docker push suhasappa/multi-nginx
- - docker push suhasappa/multi-server
- - docker push suhasappa/multi-worker
+ - docker push suhasindra/multi-client
+ - docker push suhasindra/multi-nginx
+ - docker push suhasindra/multi-server
+ - docker push suhasindra/multi-worker
 deploy: 
  provider: elasticbeanstalk
  region: "us-east-1"
